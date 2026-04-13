@@ -65,6 +65,17 @@ namespace LegacyRenewalApp
                 taxAmount,
                 finalAmount,
                 notes);
+            
+            FinalizeInvoice(invoice, customer, normalizedPlanCode);
+
+            return invoice;
+        }
+
+        private static void FinalizeInvoice(
+            RenewalInvoice invoice,
+            Customer customer,
+            string normalizedPlanCode)
+        {
             LegacyBillingGateway.SaveInvoice(invoice);
 
             if (!string.IsNullOrWhiteSpace(customer.Email))
@@ -76,8 +87,6 @@ namespace LegacyRenewalApp
 
                 LegacyBillingGateway.SendEmail(customer.Email, subject, body);
             }
-
-            return invoice;
         }
 
         private static RenewalInvoice BuildInvoice(
