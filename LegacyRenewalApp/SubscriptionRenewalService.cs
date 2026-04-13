@@ -20,9 +20,8 @@ namespace LegacyRenewalApp
             var customerRepository = new CustomerRepository();
             var planRepository = new SubscriptionPlanRepository();
 
-            var customer = customerRepository.GetById(customerId);
-            var plan = planRepository.GetByCode(normalizedPlanCode);
-
+            var (customer, plan) = GetRequiredData(customerId, customerRepository, planRepository, normalizedPlanCode);
+            
             if (!customer.IsActive)
             {
                 throw new InvalidOperationException("Inactive customers cannot renew subscriptions");
@@ -197,6 +196,18 @@ namespace LegacyRenewalApp
             }
 
             return invoice;
+        }
+
+        private static (Customer customer, SubscriptionPlan plan) GetRequiredData(
+            int customerId,
+            CustomerRepository customerRepository,
+            SubscriptionPlanRepository planRepository,
+            string normalizedPlanCode)
+        {
+            var customer = customerRepository.GetById(customerId);
+            var plan = planRepository.GetByCode(normalizedPlanCode);
+
+            return (customer, plan);
         }
 
         private static void ValidateInput(int customerId, string planCode, int seatCount, string paymentMethod)
