@@ -53,7 +53,48 @@ namespace LegacyRenewalApp
                 notes += "minimum invoice amount applied; ";
             }
 
-            var invoice = new RenewalInvoice
+            var invoice = BuildInvoice(customerId,
+                normalizedPlanCode,
+                normalizedPaymentMethod,
+                seatCount,
+                customer,
+                baseAmount,
+                discountAmount,
+                supportFee,
+                paymentFee,
+                taxAmount,
+                finalAmount,
+                notes);
+            LegacyBillingGateway.SaveInvoice(invoice);
+
+            if (!string.IsNullOrWhiteSpace(customer.Email))
+            {
+                string subject = "Subscription renewal invoice";
+                string body =
+                    $"Hello {customer.FullName}, your renewal for plan {normalizedPlanCode} " +
+                    $"has been prepared. Final amount: {invoice.FinalAmount:F2}.";
+
+                LegacyBillingGateway.SendEmail(customer.Email, subject, body);
+            }
+
+            return invoice;
+        }
+
+        private static RenewalInvoice BuildInvoice(
+            int customerId,
+            string normalizedPlanCode,
+            string normalizedPaymentMethod,
+            int seatCount,
+            Customer customer,
+            decimal baseAmount,
+            decimal discountAmount,
+            decimal supportFee,
+            decimal paymentFee,
+            decimal taxAmount,
+            decimal finalAmount,
+            string notes)
+        {
+            return new RenewalInvoice
             {
                 InvoiceNumber = $"INV-{DateTime.UtcNow:yyyyMMdd}-{customerId}-{normalizedPlanCode}",
                 CustomerName = customer.FullName,
@@ -69,20 +110,6 @@ namespace LegacyRenewalApp
                 Notes = notes.Trim(),
                 GeneratedAt = DateTime.UtcNow
             };
-
-            LegacyBillingGateway.SaveInvoice(invoice);
-
-            if (!string.IsNullOrWhiteSpace(customer.Email))
-            {
-                string subject = "Subscription renewal invoice";
-                string body =
-                    $"Hello {customer.FullName}, your renewal for plan {normalizedPlanCode} " +
-                    $"has been prepared. Final amount: {invoice.FinalAmount:F2}.";
-
-                LegacyBillingGateway.SendEmail(customer.Email, subject, body);
-            }
-
-            return invoice;
         }
 
         private static (decimal taxAmount, decimal finalAmount) CalculateTax(
