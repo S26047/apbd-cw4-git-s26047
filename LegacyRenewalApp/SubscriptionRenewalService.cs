@@ -41,30 +41,11 @@ namespace LegacyRenewalApp
             notes += supportNotes;
             
             var paymentFee = CalculatePaymentFee(normalizedPaymentMethod, subtotalAfterDiscount, supportFee, out var paymentNotes);
-
             notes += paymentNotes;
             
-            decimal taxRate = 0.20m;
-            if (customer.Country == "Poland")
-            {
-                taxRate = 0.23m;
-            }
-            else if (customer.Country == "Germany")
-            {
-                taxRate = 0.19m;
-            }
-            else if (customer.Country == "Czech Republic")
-            {
-                taxRate = 0.21m;
-            }
-            else if (customer.Country == "Norway")
-            {
-                taxRate = 0.25m;
-            }
+            var taxRate = GetTaxRate(customer);
 
-            decimal taxBase = subtotalAfterDiscount + supportFee + paymentFee;
-            decimal taxAmount = taxBase * taxRate;
-            decimal finalAmount = taxBase + taxAmount;
+            var (taxAmount, finalAmount) = CalculateTax(subtotalAfterDiscount, supportFee, paymentFee, taxRate);
 
             if (finalAmount < 500m)
             {
@@ -102,6 +83,43 @@ namespace LegacyRenewalApp
             }
 
             return invoice;
+        }
+
+        private static (decimal taxAmount, decimal finalAmount) CalculateTax(
+            decimal subtotalAfterDiscount,
+            decimal supportFee,
+            decimal paymentFee,
+            decimal taxRate)
+        {
+            var taxBase = subtotalAfterDiscount + supportFee + paymentFee;
+            var taxAmount = taxBase * taxRate;
+            var finalAmount = taxBase + taxAmount;
+
+            return (taxAmount, finalAmount);
+        }
+
+        private static decimal GetTaxRate(Customer customer)
+        {
+            decimal taxRate = 0.20m;
+
+            if (customer.Country == "Poland")
+            {
+                taxRate = 0.23m;
+            }
+            else if (customer.Country == "Germany")
+            {
+                taxRate = 0.19m;
+            }
+            else if (customer.Country == "Czech Republic")
+            {
+                taxRate = 0.21m;
+            }
+            else if (customer.Country == "Norway")
+            {
+                taxRate = 0.25m;
+            }
+
+            return taxRate;
         }
 
         private static decimal CalculatePaymentFee(
