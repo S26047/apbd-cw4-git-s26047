@@ -148,62 +148,106 @@ namespace LegacyRenewalApp
             decimal discountAmount = 0m;
             notes = string.Empty;
 
-            if (customer.Segment == "Silver")
-            {
-                discountAmount += baseAmount * 0.05m;
-                notes += "silver discount; ";
-            }
-            else if (customer.Segment == "Gold")
-            {
-                discountAmount += baseAmount * 0.10m;
-                notes += "gold discount; ";
-            }
-            else if (customer.Segment == "Platinum")
-            {
-                discountAmount += baseAmount * 0.15m;
-                notes += "platinum discount; ";
-            }
-            else if (customer.Segment == "Education" && plan.IsEducationEligible)
-            {
-                discountAmount += baseAmount * 0.20m;
-                notes += "education discount; ";
-            }
+            discountAmount += CalculateSegmentDiscount(customer, plan, baseAmount, out var segmentNotes);
+            notes += segmentNotes;
 
-            if (customer.YearsWithCompany >= 5)
-            {
-                discountAmount += baseAmount * 0.07m;
-                notes += "long-term loyalty discount; ";
-            }
-            else if (customer.YearsWithCompany >= 2)
-            {
-                discountAmount += baseAmount * 0.03m;
-                notes += "basic loyalty discount; ";
-            }
+            discountAmount += CalculateTenureDiscount(customer, baseAmount, out var tenureNotes);
+            notes += tenureNotes;
 
-            if (seatCount >= 50)
-            {
-                discountAmount += baseAmount * 0.12m;
-                notes += "large team discount; ";
-            }
-            else if (seatCount >= 20)
-            {
-                discountAmount += baseAmount * 0.08m;
-                notes += "medium team discount; ";
-            }
-            else if (seatCount >= 10)
-            {
-                discountAmount += baseAmount * 0.04m;
-                notes += "small team discount; ";
-            }
+            discountAmount += CalculateSeatDiscount(seatCount, baseAmount, out var seatNotes);
+            notes += seatNotes;
+
+            discountAmount += ApplyLoyaltyPoints(customer, useLoyaltyPoints, out var loyaltyNotes);
+            notes += loyaltyNotes;
+
+            return discountAmount;
+        }
+
+        private static decimal ApplyLoyaltyPoints(Customer customer, bool useLoyaltyPoints, out string notes)
+        {
+            decimal discount = 0m;
+            notes = string.Empty;
 
             if (useLoyaltyPoints && customer.LoyaltyPoints > 0)
             {
                 int pointsToUse = customer.LoyaltyPoints > 200 ? 200 : customer.LoyaltyPoints;
-                discountAmount += pointsToUse;
+                discount += pointsToUse;
                 notes += $"loyalty points used: {pointsToUse}; ";
             }
 
-            return discountAmount;
+            return discount;
+        }
+
+        private static decimal CalculateSeatDiscount(int seatCount, decimal baseAmount, out string notes)
+        {
+            decimal discount = 0m;
+            notes = string.Empty;
+
+            if (seatCount >= 50)
+            {
+                discount += baseAmount * 0.12m;
+                notes += "large team discount; ";
+            }
+            else if (seatCount >= 20)
+            {
+                discount += baseAmount * 0.08m;
+                notes += "medium team discount; ";
+            }
+            else if (seatCount >= 10)
+            {
+                discount += baseAmount * 0.04m;
+                notes += "small team discount; ";
+            }
+
+            return discount;
+        }
+
+        private static decimal CalculateTenureDiscount(Customer customer, decimal baseAmount, out string notes)
+        {
+            decimal discount = 0m;
+            notes = string.Empty;
+
+            if (customer.YearsWithCompany >= 5)
+            {
+                discount += baseAmount * 0.07m;
+                notes += "long-term loyalty discount; ";
+            }
+            else if (customer.YearsWithCompany >= 2)
+            {
+                discount += baseAmount * 0.03m;
+                notes += "basic loyalty discount; ";
+            }
+
+            return discount;
+        }
+
+        private static decimal CalculateSegmentDiscount(Customer customer, SubscriptionPlan plan, decimal baseAmount, out string notes)
+        {
+            decimal discount = 0m;
+            notes = string.Empty;
+
+            if (customer.Segment == "Silver")
+            {
+                discount += baseAmount * 0.05m;
+                notes += "silver discount; ";
+            }
+            else if (customer.Segment == "Gold")
+            {
+                discount += baseAmount * 0.10m;
+                notes += "gold discount; ";
+            }
+            else if (customer.Segment == "Platinum")
+            {
+                discount += baseAmount * 0.15m;
+                notes += "platinum discount; ";
+            }
+            else if (customer.Segment == "Education" && plan.IsEducationEligible)
+            {
+                discount += baseAmount * 0.20m;
+                notes += "education discount; ";
+            }
+
+            return discount;
         }
 
         private static (Customer customer, SubscriptionPlan plan) GetRequiredData(
