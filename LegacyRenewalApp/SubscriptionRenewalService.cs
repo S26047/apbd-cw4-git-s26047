@@ -37,25 +37,9 @@ namespace LegacyRenewalApp
                 notes += "minimum discounted subtotal applied; ";
             }
 
-            decimal supportFee = 0m;
-            if (includePremiumSupport)
-            {
-                if (normalizedPlanCode == "START")
-                {
-                    supportFee = 250m;
-                }
-                else if (normalizedPlanCode == "PRO")
-                {
-                    supportFee = 400m;
-                }
-                else if (normalizedPlanCode == "ENTERPRISE")
-                {
-                    supportFee = 700m;
-                }
-
-                notes += "premium support included; ";
-            }
-
+            var supportFee = CalculateSupportFee(includePremiumSupport, normalizedPlanCode, out var supportNotes);
+            notes += supportNotes;
+            
             decimal paymentFee = 0m;
             if (normalizedPaymentMethod == "CARD")
             {
@@ -140,6 +124,35 @@ namespace LegacyRenewalApp
             }
 
             return invoice;
+        }
+
+        private static decimal CalculateSupportFee(
+            bool includePremiumSupport,
+            string normalizedPlanCode,
+            out string notes)
+        {
+            decimal supportFee = 0m;
+            notes = string.Empty;
+
+            if (includePremiumSupport)
+            {
+                if (normalizedPlanCode == "START")
+                {
+                    supportFee = 250m;
+                }
+                else if (normalizedPlanCode == "PRO")
+                {
+                    supportFee = 400m;
+                }
+                else if (normalizedPlanCode == "ENTERPRISE")
+                {
+                    supportFee = 700m;
+                }
+
+                notes += "premium support included; ";
+            }
+
+            return supportFee;
         }
 
         private static decimal CalculateDiscount(int seatCount, bool useLoyaltyPoints, Customer customer, decimal baseAmount,
