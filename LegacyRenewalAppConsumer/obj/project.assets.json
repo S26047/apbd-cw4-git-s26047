@@ -1,0 +1,113 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "LegacyRenewalApp/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/LegacyRenewalApp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LegacyRenewalApp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LegacyRenewalApp/1.0.0": {
+      "type": "project",
+      "path": "../LegacyRenewalApp/LegacyRenewalApp.csproj",
+      "msbuildProject": "../LegacyRenewalApp/LegacyRenewalApp.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "LegacyRenewalApp >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\filip\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "E:\\APBD\\wykl4\\zadanie_refactoring_renewal\\LegacyRenewalAppConsumer\\LegacyRenewalAppConsumer.csproj",
+      "projectName": "LegacyRenewalAppConsumer",
+      "projectPath": "E:\\APBD\\wykl4\\zadanie_refactoring_renewal\\LegacyRenewalAppConsumer\\LegacyRenewalAppConsumer.csproj",
+      "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
+      "outputPath": "E:\\APBD\\wykl4\\zadanie_refactoring_renewal\\LegacyRenewalAppConsumer\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "E:\\APBD\\wykl4\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj": {
+              "projectPath": "E:\\APBD\\wykl4\\zadanie_refactoring_renewal\\LegacyRenewalApp\\LegacyRenewalApp.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.21, 8.0.21]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.21, 8.0.21]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.21, 8.0.21]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.21, 8.0.21]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Users\\filip\\.dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

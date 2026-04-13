@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyRenewalAppConsumer", "LegacyRenewalAppConsumer\LegacyRenewalAppConsumer.csproj", "{D30273A5-2140-4A85-9E46-AB0F4C4D6B01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyRenewalApp", "LegacyRenewalApp\LegacyRenewalApp.csproj", "{A621B116-7D53-4C36-A3A4-C2A25F5D2A77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D30273A5-2140-4A85-9E46-AB0F4C4D6B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D30273A5-2140-4A85-9E46-AB0F4C4D6B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D30273A5-2140-4A85-9E46-AB0F4C4D6B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D30273A5-2140-4A85-9E46-AB0F4C4D6B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A621B116-7D53-4C36-A3A4-C2A25F5D2A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A621B116-7D53-4C36-A3A4-C2A25F5D2A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A621B116-7D53-4C36-A3A4-C2A25F5D2A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A621B116-7D53-4C36-A3A4-C2A25F5D2A77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F455D0F-BF9D-410A-9E52-5ED0FA270A9C}
+	EndGlobalSection
+EndGlobal

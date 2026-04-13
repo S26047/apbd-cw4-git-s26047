@@ -1,0 +1,11 @@
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/bin/Debug/net8.0/LegacyRenewalApp.deps.json
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/bin/Debug/net8.0/LegacyRenewalApp.dll
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/bin/Debug/net8.0/LegacyRenewalApp.pdb
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/LegacyRenewalApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/LegacyRenewalApp.AssemblyInfoInputs.cache
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/LegacyRenewalApp.AssemblyInfo.cs
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/LegacyRenewalApp.csproj.CoreCompileInputs.cache
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/LegacyRenewalApp.dll
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/refint/LegacyRenewalApp.dll
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/LegacyRenewalApp.pdb
+/Users/pgago/Downloads/materiały_na_stronę/apbd/wykład_4/zadanie_refactoring_renewal/LegacyRenewalApp/obj/Debug/net8.0/ref/LegacyRenewalApp.dll
